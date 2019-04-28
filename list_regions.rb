@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+#
+# list all AWS EC2 regions
+#
 require 'aws-sdk'
 require 'pp'
 

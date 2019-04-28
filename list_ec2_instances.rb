@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+#
+# list all AWS VPC & EC2 instances in all regions
+#
 require 'aws-sdk'
 require 'pp'
 
