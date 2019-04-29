@@ -41,7 +41,7 @@ regions.sort.each do |region|
   puts "\nRegion: " + region + ' - ' + region_names[region]
   ec2_client.describe_vpcs.vpcs.each do |vpc|
     vpc.tags.each do |tag|
-      print "-- VPC: Tag Name = #{tag.value}  " if tag.key == 'Name'
+      print "-- VPC: Name: #{tag.value}  " if tag.key == 'Name'
     end
     puts "-- VPC ID: #{vpc.vpc_id}   CIDR: #{vpc.cidr_block}"
   end
@@ -50,10 +50,10 @@ regions.sort.each do |region|
   puts "\n-- EC2 instances"
   ec2.instances.each do |i|
     next if i.state.name == 'terminated'
-    print "\n\tID: " + i.id + '   State: ' + i.state.name
+    print "\tID: #{i.id}  State: #{i.state.name}  VPC: #{i.vpc_id}  "
     i.tags.each do |tag|
-      print "  Name = #{tag.value}" if tag.key == "Name"
+      print "Name = #{tag.value}" if tag.key == "Name"
     end
-    puts "  VPC: " + i.vpc_id
+    puts
   end
 end
