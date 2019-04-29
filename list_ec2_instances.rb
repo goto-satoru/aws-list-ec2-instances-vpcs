@@ -40,21 +40,20 @@ regions.sort.each do |region|
   next if ec2_client.describe_vpcs.vpcs.size < 1
   puts "\nRegion: " + region + ' - ' + region_names[region]
   ec2_client.describe_vpcs.vpcs.each do |vpc|
-    puts
     vpc.tags.each do |tag|
-      puts "-- VPC: Tag Name = #{tag.value}" if tag.key == 'Name'
+      print "-- VPC: Tag Name = #{tag.value}  " if tag.key == 'Name'
     end
-    pp vpc
+    puts "-- VPC ID: #{vpc.vpc_id}   CIDR: #{vpc.cidr_block}"
   end
 
   ec2 = Aws::EC2::Resource.new(region: region)
   puts "\n-- EC2 instances"
   ec2.instances.each do |i|
     next if i.state.name == 'terminated'
-    puts "\n\tID: " + i.id + '   State: ' + i.state.name
+    print "\n\tID: " + i.id + '   State: ' + i.state.name
     i.tags.each do |tag|
-      puts "\tName = #{tag.value}" if tag.key == "Name"
+      print "  Name = #{tag.value}" if tag.key == "Name"
     end
-    puts "\tVPC: " + i.vpc_id
+    puts "  VPC: " + i.vpc_id
   end
 end
