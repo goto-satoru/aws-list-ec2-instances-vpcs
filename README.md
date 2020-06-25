@@ -17,7 +17,7 @@ https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html
 Set following environment variables.
 
 * AWS_ACCESS_KEY_ID
-* and AWS_SECRET_ACCESS_KEY
+* AWS_SECRET_ACCESS_KEY
 
 # list all VPC and EC2 instances
 
